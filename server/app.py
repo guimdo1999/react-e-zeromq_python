@@ -20,8 +20,8 @@ def handle_connect():
 def handle_message(message): 
     """ message = socket.recv_string() """
     print("----Mensagem recebida: ", message)
-    print("----zeromq: ", socket.recv_string())
     emit('message', message)
+    """ print("----zeromq: ", socket.recv_string()) """
     
     
 if __name__ == '__main__':

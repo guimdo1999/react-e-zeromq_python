@@ -1,63 +1,45 @@
-import { useEffect, useState } from "react";
-import io from "socket.io-client";
+import React, { useState, useEffect } from 'react';
+import { socket } from './socket';
+import { ConnectionState } from './components/ConnectionState';
+import { ConnectionManager } from './components/ConnectionManager';
+import { MyForm } from './components/MyForm';
+import { Events } from './components/Events';
 
-const socket = io("http://localhost:5000");
-function App() {
-  const [message, setMessage] = useState("");
-  const [messageR, setMessageR] = useState<any>([]);
-
-  useEffect(() => {
-    socket.on("connect", () => {
-      console.log("Conectado ao servidor.");
-    });
-  }, []);
+export default function App() {
+  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [fooEvents, setFooEvents] = useState<any>([]);
 
   useEffect(() => {
-    socket.on("message", (data) => {
-      console.log("server: "+ data);
-      setMessageR((messageR: any) => [...messageR, data]);
-      /* return () => {
-        socket.disconnect();
-      }; */
-    });
+    function onConnect() {
+      setIsConnected(true);
+    }
+
+    function onDisconnect() {
+      setIsConnected(false);
+    }
+
+    function onFooEvent(value:any) {
+      setFooEvents((previous: any) => [...previous, value]);
+      console.log(value)
+    }
+
+    socket.on('connect', onConnect);
+    socket.on('disconnect', onDisconnect);
+    socket.on('message', onFooEvent);
+
+    return () => {
+      socket.off('connect', onConnect);
+      socket.off('disconnect', onDisconnect);
+      socket.off('message', onFooEvent);
+    };
   }, []);
-
-  const handleMessageChange = (e: any) => {
-    setMessage(e.target.value);
-  };
-  const handleSendMessage = () => {
-    socket.emit("message", message);
-    console.log(message);
-  };
-
-  socket.on("message", (data) => {
-    setMessageR((messageR: any) => [...messageR, data]);
-    console.log(messageR);
-  })
-  
-  const handleDisconnect = () => {
-    console.log("dc");
-    socket.disconnect();
-  };
 
   return (
-    <div>
-      <div>
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => handleMessageChange(e)}
-        />
-        <button onClick={() => handleSendMessage()}>Enviar</button>
-      </div>
-      <button onClick={() => handleDisconnect()}>DC</button>
-      <ul>
-        {messageR.map((msg: String, index: any) => (
-          <li key={index}>{msg}</li>
-        ))}
-      </ul>
+    <div className="App">
+      <ConnectionState isConnected={ isConnected } />
+      <Events events={ fooEvents } />
+      <ConnectionManager />
+      <MyForm />
     </div>
   );
 }
-
-export default App;
