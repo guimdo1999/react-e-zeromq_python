@@ -1,13 +1,12 @@
-import React from 'react';
-import { socket } from '../socket';
+import  getSocket  from "../socket";
 
 export function ConnectionManager() {
   function connect() {
-    socket.connect();
+    getSocket().connect();
   }
 
   function disconnect() {
-    socket.disconnect();
+    getSocket().disconnect();
   }
 
   return (

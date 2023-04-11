@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { socket } from '../socket';
+import  getSocket  from '../socket';
 
 export function MyForm() {
   const [value, setValue] = useState('');
@@ -9,7 +9,7 @@ export function MyForm() {
     event.preventDefault();
     setIsLoading(true);
 
-    socket.timeout(500).emit('message', value, () => {
+    getSocket().timeout(500).emit('message', value, () => {
       setIsLoading(false);
     });
   }

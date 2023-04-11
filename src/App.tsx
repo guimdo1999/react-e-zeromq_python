@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { socket } from './socket';
+import  getSocket  from './socket';
 import { ConnectionState } from './components/ConnectionState';
 import { ConnectionManager } from './components/ConnectionManager';
 import { MyForm } from './components/MyForm';
 import { Events } from './components/Events';
 
 export default function App() {
-  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [isConnected, setIsConnected] = useState(getSocket().connected);
   const [fooEvents, setFooEvents] = useState<any>([]);
 
   useEffect(() => {
@@ -23,14 +23,14 @@ export default function App() {
       console.log(value)
     }
 
-    socket.on('connect', onConnect);
-    socket.on('disconnect', onDisconnect);
-    socket.on('message', onFooEvent);
+    getSocket().on('connect', onConnect);
+    getSocket().on('disconnect', onDisconnect);
+    getSocket().on('message', onFooEvent);
 
     return () => {
-      socket.off('connect', onConnect);
-      socket.off('disconnect', onDisconnect);
-      socket.off('message', onFooEvent);
+      getSocket().off('connect', onConnect);
+      getSocket().off('disconnect', onDisconnect);
+      getSocket().off('message', onFooEvent);
     };
   }, []);
 
