@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import  {Grid } from "@mui/material";
+
 import  getSocket  from './socket';
 import { ConnectionState } from './components/ConnectionState';
 import { ConnectionManager } from './components/ConnectionManager';
@@ -35,11 +37,11 @@ export default function App() {
   }, []);
 
   return (
-    <div className="App">
+    <Grid container ml={2} direction='column' className="App">
       <ConnectionState isConnected={ isConnected } />
       <Events events={ fooEvents } />
       <ConnectionManager />
       <MyForm />
-    </div>
+    </Grid>
   );
 }
