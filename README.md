@@ -1,3 +1,8 @@
+# Começando
+Lembra de ter instalado em seu computador o node e python.
+npm install - Instalar as dependências
+pip install flask flask_socketio flask_cors
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
