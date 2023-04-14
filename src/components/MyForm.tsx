@@ -40,13 +40,5 @@ export function MyForm() {
         </Button>
       </Grid>
     </Grid>
-    /*
-  <form onSubmit={onSubmit}>
-      <input onChange={(e) => setValue(e.target.value)} />
-
-      <button type="submit" disabled={isLoading}>
-        Submit
-      </button>
-    </form> */
   );
 }

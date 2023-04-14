@@ -10,6 +10,10 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 """ context = zmq.Context()
 socket = context.socket(zmq.SUB) """
 
+"""socketio.emit: envia a mensagem a todos os usuários.
+emit: envia apenas ao usuário logado.
+"""
+
 @socketio.on('connect')
 def handle_connect():
     print("----Conectou")
@@ -20,7 +24,7 @@ def handle_connect():
 def handle_message(message): 
     """ message = socket.recv_string() """
     print("----Mensagem recebida: ", message)
-    emit('message', message)
+    socketio.emit('message', message)
     """ print("----zeromq: ", socket.recv_string()) """
     
     

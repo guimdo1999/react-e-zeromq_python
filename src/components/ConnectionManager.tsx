@@ -1,7 +1,12 @@
 import getSocket from "../socket";
 import { Grid, Button } from "@mui/material";
+import "./ConnectionManager.css"
 
-export function ConnectionManager() {
+interface ConnectionStateProps {
+  isConnected: boolean;
+}
+
+export function ConnectionManager({ isConnected }: ConnectionStateProps) {
   function connect() {
     getSocket().connect();
   }
@@ -22,6 +27,7 @@ export function ConnectionManager() {
           Desconectar
         </Button>
       </Grid>
+      <Grid item mt={2} ml={1} className={isConnected ? "dotG" : "dotR"}></Grid>
     </Grid>
   );
 }

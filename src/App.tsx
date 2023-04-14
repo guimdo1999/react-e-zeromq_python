@@ -37,10 +37,9 @@ export default function App() {
   }, []);
 
   return (
-    <Grid container ml={2} direction='column' className="App">
-      <ConnectionState isConnected={ isConnected } />
+    <Grid container ml={2} mt={2} direction='column' className="App">
+      <ConnectionManager isConnected={ isConnected } />
       <Events events={ fooEvents } />
-      <ConnectionManager />
       <MyForm />
     </Grid>
   );
