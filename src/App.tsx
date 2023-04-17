@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import  {Grid } from "@mui/material";
 
 import  getSocket  from './socket';
-import { ConnectionState } from './components/ConnectionState';
 import { ConnectionManager } from './components/ConnectionManager';
 import { MyForm } from './components/MyForm';
 import { Events } from './components/Events';
