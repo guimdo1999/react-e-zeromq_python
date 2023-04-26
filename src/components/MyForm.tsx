@@ -3,7 +3,7 @@ import getSocket from "../socket";
 import { Grid, TextField, Button } from "@mui/material";
 
 export function MyForm() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState<Number>();
   const [isLoading, setIsLoading] = useState(false);
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -31,7 +31,8 @@ export function MyForm() {
           required
           id="message-text"
           label="Mensagem"
-          onChange={(e) => setValue(e.target.value)}
+          type="number"
+          onChange={(e) => setValue(Number(e.target.value))}
         />
       </Grid>
       <Grid item mt={1}>
