@@ -1,4 +1,3 @@
-import { List, ListItem, ListItemText } from "@mui/material";
 import {
   CartesianGrid,
   Legend,
@@ -9,25 +8,8 @@ import {
   YAxis,
 } from "recharts";
 
-interface EventsProps {
-  events: number[];
-}
-
-/* export function Events({ events }: EventsProps) {
-  return (
-    <List>
-      {events.map((event, index) => (
-        <ListItem alignItems="flex-start">
-          <ListItemText key={index}>{event}</ListItemText>
-        </ListItem>
-      ))}
-    </List>
-  );
-} */
-
 export function Events({ events }: any) {
   return (
-    <>
       <LineChart
         width={730}
         height={250}
@@ -39,15 +21,7 @@ export function Events({ events }: any) {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="message" stroke="#8884d8" />
+        <Line type="monotone" dataKey="foo" stroke="#8884d8" />
       </LineChart>
-      {/* <List>
-        {events.map((event, index) => (
-          <ListItem alignItems="flex-start">
-            <ListItemText key={index}>{event}</ListItemText>
-          </ListItem>
-        ))}
-      </List> */}
-    </>
   );
 }

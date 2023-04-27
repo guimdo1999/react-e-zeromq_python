@@ -17,6 +17,14 @@ export function MyForm() {
       });
   }
 
+  function onFoo() {
+    getSocket()
+      .timeout(500)
+      .emit("foo1", value, () => {
+        setIsLoading(false);
+      });
+  }
+
   return (
     <Grid
       container
@@ -38,6 +46,13 @@ export function MyForm() {
       <Grid item mt={1}>
         <Button variant="contained" type="submit" disabled={isLoading}>
           Enviar
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => onFoo()}
+          disabled={isLoading}
+        >
+          Gráfico
         </Button>
       </Grid>
     </Grid>
