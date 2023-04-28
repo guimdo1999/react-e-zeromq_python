@@ -2,9 +2,7 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 from random import randint
 import time
-""" from flask_cors import CORS
-import zmq
- """
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -22,16 +20,10 @@ def handle_connect():
     print("----Conectou")
     """ socket.connect('tcp://localhost:5555')
     socket.setsockopt_string(zmq.SUBSCRIBE, '') """
-    """ tempo=0
-    while tempo < 10:
-        random = randint(0,100)
-        socketio.emit('message', {'message': random, 'time':tempo })
-        tempo = tempo+1
-        time.sleep(1) """
 
 
 @socketio.on('foo1')
-def handle_foo(val): 
+def handle_foo(): 
     tempo=0
     print("foo")
     while tempo < 10:

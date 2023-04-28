@@ -20,7 +20,7 @@ export function MyForm() {
   function onFoo() {
     getSocket()
       .timeout(500)
-      .emit("foo1", value, () => {
+      .emit("foo1", () => {
         setIsLoading(false);
       });
   }
