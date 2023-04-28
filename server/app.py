@@ -28,9 +28,13 @@ def handle_foo():
     print("foo")
     while tempo < 10:
         random = randint(0,100)
-        socketio.emit('foo1', {'foo': random, 'time':tempo })
+        socketio.emit('foo1', {'foo': random, 'x':tempo })
         tempo = tempo+1
-        time.sleep(1)
+        time.sleep(0.5)
+
+@socketio.on('coord')
+def handle_coord(x,y):
+    socketio.emit('coord',{'y': y, 'x': x})
 
 @socketio.on('message')
 def handle_message(message): 
