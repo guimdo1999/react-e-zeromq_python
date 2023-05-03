@@ -1,7 +1,25 @@
 # Começando
 Lembra de ter instalado em seu computador o node e python.
+
 npm install - Instalar as dependências
+
+npm start - começa o front
+
+# Server Python
+
 pip install flask flask_socketio flask_cors
+
+cd server
+
+python app.py
+
+# Server node
+
+cd server
+
+npm i
+
+npm start
 
 # Getting Started with Create React App
 
