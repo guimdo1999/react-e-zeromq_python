@@ -10,18 +10,34 @@ import {
   YAxis,
 } from "recharts";
 
-export function Events({ events }: any) {
-  const [chartType, setChartType] = useState<any>("number");
+interface Props {
+  evento: Event[];
+}
+
+interface Event {
+  foo?: number;
+  x?: number;
+  y?: number;
+}
+
+export function Events({ evento }: Props) {
+  const [chartType, setChartType] = useState<"category" | "number">("number");
 
   var props: any = [];
-  if (Object.keys(events).length > 0) {
-    props = Object.keys(events.reduce((o: any, c: any) => Object.assign(o, c)));
+  if (Object.keys(evento).length >= 1) {
+    props = Object.keys(evento.reduce((o:Event, c:Event) => Object.assign(o, c)));
   }
 
-  //Filtra os items com X igual
-   events = events.filter(
+  //Filtra os items com X igual ---- Lidar com primeiro valor sumindo aqui.
+  /* evento = evento.filter(
     (v: any, i: any, a: any) => a.findLastIndex((v2: any) => v2.x === v.x) === i
-  ); 
+  );  */
+  /* if (evento.length > 10) {
+    if (evento[evento.length - 1].foo === evento[0].foo) {
+      evento.splice(evento.length - 1);
+    }
+  } */
+  console.log(evento)
 
   const handleType = () => {
     chartType === "number" ? setChartType("category") : setChartType("number");
@@ -32,7 +48,7 @@ export function Events({ events }: any) {
       <LineChart
         width={730}
         height={250}
-        data={events}
+        data={evento}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" />
@@ -45,7 +61,7 @@ export function Events({ events }: any) {
         <YAxis />
         <Tooltip />
         <Legend />
-        {props.map((event: any, index: number) => {
+        {props.map((event: any, index: any) => {
           if (event !== "x") {
             return (
               <Line

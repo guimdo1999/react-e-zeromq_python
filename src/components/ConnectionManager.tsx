@@ -1,4 +1,4 @@
-import getSocket from "../socket";
+import {socket} from "../socket";
 import { Grid, Button } from "@mui/material";
 import "./ConnectionManager.css"
 
@@ -8,11 +8,11 @@ interface ConnectionStateProps {
 
 export function ConnectionManager({ isConnected }: ConnectionStateProps) {
   function connect() {
-    getSocket().connect();
+    socket.connect();
   }
 
   function disconnect() {
-    getSocket().disconnect();
+    socket.disconnect();
   }
 
   return (

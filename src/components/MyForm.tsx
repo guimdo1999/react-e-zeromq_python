@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import getSocket from "../socket";
+import {socket} from "../socket";
 import { Grid, TextField, Button } from "@mui/material";
 
 export function MyForm() {
@@ -11,7 +11,7 @@ export function MyForm() {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    getSocket()
+    socket
       .timeout(500)
       .emit("message", value, () => {
         setIsLoading(false);
@@ -20,7 +20,7 @@ export function MyForm() {
 
   const onFoo = () => {
 
-    getSocket()
+    socket
       .timeout(500)
       .emit("foo1", () => {
         setIsLoading(false);
@@ -30,7 +30,7 @@ export function MyForm() {
   const onCoord = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    getSocket()
+    socket
       .timeout(500)
       .emit("coord", coordX, coordY, () => {
         setIsLoading(false);
